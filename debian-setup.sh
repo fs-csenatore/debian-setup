@@ -78,8 +78,19 @@ deb_install_chrome() {
 	fi
 }
 
+install_firefox() {
+	wget -O /tmp/firefox-install.sh "https://raw.githubusercontent.com/CS-Alchemist/firefox-linux-installer/refs/heads/main/firefox-install.sh"
+	chmod u+x /tmp/firefox-install.sh
+
+	sudo /tmp/firefox-install.sh $1
+	rm /tmp/firefox-install.sh
+
+	sudo usermod -aG firefox $USER
+}
+
 ###MAIN###
 sudo apt update
 sudo apt install $DEBIAN_DEV_APPS
+install_firefox de
 deb_install_vscode
 deb_install_chrome
