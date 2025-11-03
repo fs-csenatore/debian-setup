@@ -5,12 +5,11 @@ DEB_VSCODE="https://code.visualstudio.com/sha/download?build=stable&os=linux-deb
 DEB_CHROME="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 
 DEBIAN_DEV_APPS=" \
-	gcc \
+	linux-headers-amd64
+	build-essential \
 	make \
-	gcc-arm-linux-gnueabi \
-	binutils-arm-linux-gnueabi \
-	gcc-aarch64-linux-gnu \
-	binutils-aarch64-linux-gnu \
+	crossbuild-essential-armhf \
+	crossbuild-essential-arm64 \
 	bison \
 	flex \
 	libssl-dev \
@@ -23,7 +22,6 @@ DEBIAN_DEV_APPS=" \
 	meld \
 	libncurses-dev \
 	libudev-dev \
-	g++ \
 	libsdl2-dev \
 	python3-dev \
 	nfs-common \
@@ -39,21 +37,17 @@ DEBIAN_DEV_APPS=" \
 	tmux \
 	nmap \
 	docker-compose \
-	docker-ce-cli \
-	docker-engine \
-	docker-ee-cli \
 	docker.io-doc \
-	docker-buildx-plugin \
 	docker-doc \
-	docker-ce \
-	docker-ee \
 	docker.io \
-	docker-ce-rootless-extras \
-	docker \
 	docker-clean \
-	docker-engine-cs \
 	docker-registry \
 	docker-doc \
+	cifs-tools \
+"
+
+DEBIAN_REMOVE_APPS=" \
+	firefox-esr \
 "
 
 deb_common_install() {
@@ -91,6 +85,7 @@ install_firefox() {
 ###MAIN###
 sudo apt update
 sudo apt install $DEBIAN_DEV_APPS
+sudo apt remove $DEBIAN_REMOVE_APPS
 install_firefox de
 deb_install_vscode
 deb_install_chrome
