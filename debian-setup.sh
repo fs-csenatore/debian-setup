@@ -50,6 +50,19 @@ DEBIAN_REMOVE_APPS=" \
 	firefox-esr \
 "
 
+CODE_EXTENSIONS=" \
+	eamodio.gitlens \
+	eclipse-cdt.memory-inspector \
+	mcu-debug.debug-tracker-vscode \
+	mindaro-dev.file-downloader \
+	ms-vscode.cmake-tools \
+	ms-vscode.cpptools \
+	ms-vscode.vscode-serial-monitor \
+	nxpsemiconductors.mcuxpresso \
+	plorefice.devicetree \
+	shardulm94.trailing-spaces \
+"
+
 deb_common_install() {
     wget -O /tmp/app.deb $1
     sudo apt install -y /tmp/app.deb
@@ -62,6 +75,12 @@ deb_install_vscode() {
     else
         echo "VS-CODE allready installed"
     fi
+}
+
+install_vscode_extensions() {
+	for ext in $CODE_EXTENSIONS; do
+  		code --install-extension "$ext" --force
+	done
 }
 
 deb_install_chrome() {
@@ -88,4 +107,5 @@ sudo apt install $DEBIAN_DEV_APPS
 sudo apt remove $DEBIAN_REMOVE_APPS
 install_firefox de
 deb_install_vscode
+install_vscode_extensions
 deb_install_chrome
