@@ -11,6 +11,7 @@ DEBIAN_DEV_APPS=" \
 	crossbuild-essential-armhf \
 	crossbuild-essential-arm64 \
 	bison \
+	ninja-build \
 	flex \
 	libssl-dev \
 	lzop \
