@@ -62,6 +62,7 @@ CODE_EXTENSIONS=" \
 	nxpsemiconductors.mcuxpresso \
 	plorefice.devicetree \
 	shardulm94.trailing-spaces \
+	ms-vscode-remote.remote-ssh \
 "
 
 deb_common_install() {
